@@ -26,7 +26,7 @@ $ pytest
 Check the types:
 
 ```
-$ mypy
+$ mypy .
 ```
 
 Both of these steps run as part of CI.
