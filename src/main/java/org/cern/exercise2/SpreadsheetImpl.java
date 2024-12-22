@@ -17,6 +17,18 @@ public class SpreadsheetImpl {
     }
 
     ValueType getValueType(int row, int column) {
-        return null;
+        var content = get(row, column);
+
+        if (content.startsWith("=")) {
+            return ValueType.FORMULA;
+        }
+
+        for (int i = 0; i < content.length(); i++) {
+            if (!Character.isDigit(content.charAt(i))) {
+                return ValueType.STRING;
+            }
+        }
+
+        return ValueType.INTEGER;
     }
 }
