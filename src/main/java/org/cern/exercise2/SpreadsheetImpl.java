@@ -1,7 +1,18 @@
 package org.cern.exercise2;
 
-public interface SpreadsheetImpl {
-    String get(int row, int column);
-    void put(int row, int column, String content);
-    ValueType getValueType(int row, int column);
+public class SpreadsheetImpl {
+    public SpreadsheetImpl(int row, int column) {
+
+    }
+
+    String get(int row, int column) {
+        return "";
+    }
+
+    void put(int row, int column, String content) {
+    }
+
+    ValueType getValueType(int row, int column) {
+        return null;
+    }
 }
