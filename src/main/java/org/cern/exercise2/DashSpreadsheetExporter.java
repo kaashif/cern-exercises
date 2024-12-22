@@ -1,11 +1,13 @@
 package org.cern.exercise2;
 
 public class DashSpreadsheetExporter {
-    public DashSpreadsheetExporter(SpreadsheetImpl sheet) {
+    final SpreadsheetImpl sheet;
 
+    public DashSpreadsheetExporter(SpreadsheetImpl sheet) {
+        this.sheet = sheet;
     }
 
     public String export() {
-        return null;
+        return SpreadsheetExporter.export(sheet, "-");
     }
 }

@@ -2,6 +2,8 @@ package org.cern.exercise2;
 
 public class SpreadsheetImpl {
     private String[][] data;
+    private int numRows;
+    private int numColumns;
 
     private static boolean isIntegerCell(String s) {
         for (int i = 0; i < s.length(); i++) {
@@ -14,7 +16,18 @@ public class SpreadsheetImpl {
     }
 
     public SpreadsheetImpl(int numRows, int numColumns) {
+        this.numRows = numRows;
+        this.numColumns = numColumns;
         data = new String[numRows][numColumns];
+    }
+
+    // Note: In a real project I would use Lombok to generate getters and setters.
+    public int getNumRows() {
+        return numRows;
+    }
+
+    public int getNumColumns() {
+        return numColumns;
     }
 
     String get(int row, int column) {
