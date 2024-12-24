@@ -3,6 +3,13 @@
 The solution to exercise 1 is written in Python, all other solutions are
 written in Java.
 
+## TODO
+
+* Add Javadoc
+* Add property based testing
+* Build an actual library JAR from Exercise 3
+* Clean up interfaces
+
 ## Exercise 1
 
 This solution is written in Python. It depends on `pytest` for running the
@@ -30,3 +37,11 @@ $ mypy .
 ```
 
 Both of these steps run as part of CI.
+
+## Exercises 2 and 3
+
+Ensure you have Java >=21 installed. Run the tests on Linux with:
+
+```
+$ ./gradlew test
+```
