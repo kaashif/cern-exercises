@@ -5,11 +5,23 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.List;
 
 @RunWith(JUnit4.class)
 public class DependencyGraphTest {
+    String givenPrettyPrintOutput = """
+            - pkg1
+              - pkg2
+                - pkg3
+              - pkg3
+            - pkg2
+              - pkg3
+            - pkg3
+            """;
     @Test
     public void prettyPrintsGraph() {
         // Given
@@ -23,15 +35,15 @@ public class DependencyGraphTest {
         var prettyPrinted = new DependencyGraph(dependencies).toString();
 
         // Then
-        String expected = """
-                - pkg1
-                  - pkg2
-                    - pkg3
-                  - pkg3
-                - pkg2
-                  - pkg3
-                - pkg3
-                """;
-        Assertions.assertEquals(expected, prettyPrinted);
+        Assertions.assertEquals(givenPrettyPrintOutput, prettyPrinted);
+    }
+
+    @Test
+    public void prettyPrintsFile() throws URISyntaxException, IOException {
+        // When
+        var prettyPrinted = DependencyGraph.prettyPrintFile(Path.of(getClass().getResource("/given-example.json").toURI()).toString());
+
+        // Then
+        Assertions.assertEquals(givenPrettyPrintOutput, prettyPrinted);
     }
 }

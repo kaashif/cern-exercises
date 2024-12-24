@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,15 +13,13 @@ import java.util.Map;
 @RunWith(JUnit4.class)
 public class JsonParserTest {
     @Test
-    public void parsesPackageJson() {
+    public void parsesEmptyObject() {
+        Assertions.assertEquals(Map.of(), new JsonParser("{}").parseObject());
+    }
+    @Test
+    public void parsesPackageJson() throws IOException {
         // Given
-        String json = """
-                {
-                  "pkg1": ["pkg2", "pkg3"],
-                  "pkg2": ["pkg3"],
-                  "pkg3": []
-                }
-                """;
+        var json = new String(getClass().getResourceAsStream("/given-example.json").readAllBytes());
 
         // When
         Map<String, List<String>> parsedDependencies = new JsonParser(json).parseObject();
