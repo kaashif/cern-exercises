@@ -6,7 +6,6 @@ written in Java.
 ## TODO
 
 * Add Javadoc
-* Add property based testing
 * Build an actual library JAR from Exercise 3
 * Clean up interfaces
 
