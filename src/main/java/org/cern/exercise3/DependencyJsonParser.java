@@ -3,35 +3,39 @@ package org.cern.exercise3;
 import java.util.*;
 
 /**
- * Parser for the subset of JSON required for the exercise.
+ * Parser only capable of parsing the subset of JSON needed for parsing package dependency files.
  */
-public class JsonParser {
-    String input;
+public class DependencyJsonParser {
+    final String input;
     int pos;
 
-    public JsonParser(String input) {
+    public static Map<String, List<String>> parse(String input) {
+        return new DependencyJsonParser(input).parseObject();
+    }
+
+    private DependencyJsonParser(String input) {
         this.input = input;
         this.pos = 0;
     }
 
-    void skipZeroOrMore(Set<Character> chars) {
+    private void skipZeroOrMore(Set<Character> chars) {
         while (chars.contains(input.charAt(pos))) {
             pos++;
         }
     }
 
-    void skipWhitespace() {
+    private void skipWhitespace() {
         skipZeroOrMore(Set.of(' ', '\n', '\r'));
     }
 
-    void skipOne(char c) {
+    private void skipOne(char c) {
         if (input.charAt(pos) != c) {
             throw new IllegalArgumentException("expected " + c + " at " + pos + " got '" + input.charAt(c) + "'");
         }
         pos++;
     }
 
-    String parseString() {
+    private String parseString() {
         var stringBuilder = new StringBuilder();
 
         // Skip opening quote
@@ -58,7 +62,7 @@ public class JsonParser {
         return stringBuilder.toString();
     }
 
-    List<String> parseList() {
+    private List<String> parseList() {
         var result = new ArrayList<String>();
         skipOne('[');
         skipWhitespace();
@@ -78,7 +82,7 @@ public class JsonParser {
         return result;
     }
 
-    Map<String, List<String>> parseObject() {
+    private Map<String, List<String>> parseObject() {
         skipOne('{');
         skipWhitespace();
 

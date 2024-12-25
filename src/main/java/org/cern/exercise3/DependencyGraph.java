@@ -3,31 +3,48 @@ package org.cern.exercise3;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class DependencyGraph {
-    private Map<String, List<String>> packageDependencies;
+    private Map<String, Package> pkgsByName;
 
-    public static DependencyGraph readFile(String fileName) throws IOException {
-        return new DependencyGraph(new JsonParser(Files.readString(Path.of(fileName))).parseObject());
+    /**
+     * @return Fully resolved dependency graph from the dependency JSON file filePath.
+     */
+    public static DependencyGraph readFile(Path filePath) throws IOException {
+        return new DependencyGraph(DependencyJsonParser.parse(Files.readString(filePath)));
     }
 
-    public static String prettyPrintFile(String fileName) throws IOException {
-        return readFile(fileName).toString();
+    /**
+     * @return Pretty printed representation of the fully resolved dependency graph.
+     */
+    public static String prettyPrintFile(Path filePath) throws IOException {
+        return readFile(filePath).toString();
     }
 
-    public DependencyGraph(Map<String, List<String>> packageDependencies) {
-        this.packageDependencies = packageDependencies;
+    public DependencyGraph(Map<String, List<String>> pkgDependencies) {
+        pkgsByName = new HashMap<>();
+
+        for (String name: pkgDependencies.keySet()) {
+            pkgsByName.put(name, new Package(name));
+        }
+        for (var entry: pkgDependencies.entrySet()) {
+            String pkgName = entry.getKey();
+            for (String dependencyName: entry.getValue()) {
+                pkgsByName.get(pkgName).addDependency(pkgsByName.get(dependencyName));
+            }
+        }
     }
 
-    private void prettyPrint(StringBuilder stringBuilder, int indentLevel, String pkg) {
+    private void prettyPrint(StringBuilder stringBuilder, int indentLevel, Package pkg) {
         stringBuilder.append(" ".repeat(2 * indentLevel));
         stringBuilder.append("- ");
-        stringBuilder.append(pkg);
+        stringBuilder.append(pkg.getName());
         stringBuilder.append("\n");
 
-        for (String dependency : packageDependencies.get(pkg)) {
+        for (Package dependency : pkg.getDependencies()) {
             prettyPrint(stringBuilder, indentLevel + 1, dependency);
         }
     }
@@ -36,7 +53,7 @@ public class DependencyGraph {
     public String toString() {
         var stringBuilder = new StringBuilder();
 
-        for (String pkg : packageDependencies.keySet()) {
+        for (Package pkg : pkgsByName.values()) {
             prettyPrint(stringBuilder, 0, pkg);
         }
 

@@ -22,6 +22,7 @@ public class DependencyGraphTest {
               - pkg3
             - pkg3
             """;
+
     @Test
     public void prettyPrintsGraph() {
         // Given
@@ -41,7 +42,7 @@ public class DependencyGraphTest {
     @Test
     public void prettyPrintsFile() throws URISyntaxException, IOException {
         // When
-        var prettyPrinted = DependencyGraph.prettyPrintFile(Path.of(getClass().getResource("/given-example.json").toURI()).toString());
+        var prettyPrinted = DependencyGraph.prettyPrintFile(Path.of(getClass().getResource("/given-example.json").toURI()));
 
         // Then
         Assertions.assertEquals(givenPrettyPrintOutput, prettyPrinted);

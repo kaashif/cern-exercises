@@ -5,9 +5,7 @@ written in Java.
 
 ## TODO
 
-* Add Javadoc
 * Build an actual library JAR from Exercise 3
-* Clean up interfaces
 
 ## Exercise 1
 

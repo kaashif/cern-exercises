@@ -11,10 +11,10 @@ import java.util.List;
 import java.util.Map;
 
 @RunWith(JUnit4.class)
-public class JsonParserTest {
+public class DependencyJsonParserTest {
     @Test
     public void parsesEmptyObject() {
-        Assertions.assertEquals(Map.of(), new JsonParser("{}").parseObject());
+        Assertions.assertEquals(Map.of(), DependencyJsonParser.parse("{}"));
     }
     @Test
     public void parsesPackageJson() throws IOException {
@@ -22,7 +22,7 @@ public class JsonParserTest {
         var json = new String(getClass().getResourceAsStream("/given-example.json").readAllBytes());
 
         // When
-        Map<String, List<String>> parsedDependencies = new JsonParser(json).parseObject();
+        Map<String, List<String>> parsed = DependencyJsonParser.parse(json);
 
         // Then
         var expected = new HashMap<String, List<String>>() {{
@@ -31,6 +31,6 @@ public class JsonParserTest {
             put("pkg3", List.of());
         }};
 
-        Assertions.assertEquals(expected, parsedDependencies);
+        Assertions.assertEquals(expected, parsed);
     }
 }
