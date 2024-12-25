@@ -1,6 +1,11 @@
 package org.cern.exercise2;
 
 public class SpreadsheetExporter {
+    /**
+     * @param sheet Spreadsheet to export
+     * @param filler String to append after every value, including blank values.
+     * @return String containing the exported spreadsheet.
+     */
     public static String export(SpreadsheetImpl sheet, String filler) {
         var output = new StringBuilder();
 

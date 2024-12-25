@@ -1,5 +1,8 @@
 package org.cern.exercise2;
 
+/**
+ * Exports a spreadsheet using '-' as the filler string.
+ */
 public class DashSpreadsheetExporter {
     final SpreadsheetImpl sheet;
 
