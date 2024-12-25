@@ -21,7 +21,7 @@ Install dependencies:
 $ cd exercise1
 $ python3.13 -m venv venv
 $ . venv/bin/activate
-$ pip install -r requirements.txt
+$ pip install -e .
 ```
 
 Run the test suite:
