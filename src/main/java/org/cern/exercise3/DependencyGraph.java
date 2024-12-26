@@ -38,6 +38,10 @@ public class DependencyGraph {
         }
     }
 
+    public Map<String, Package> getPackages() {
+        return pkgsByName;
+    }
+
     private void prettyPrint(StringBuilder stringBuilder, int indentLevel, Package pkg) {
         stringBuilder.append(" ".repeat(2 * indentLevel));
         stringBuilder.append("- ");
