@@ -3,10 +3,6 @@
 The solution to exercise 1 is written in Python, all other solutions are
 written in Java.
 
-## TODO
-
-* Build an actual library JAR from Exercise 3
-
 ## Exercise 1
 
 This solution is written in Python. It depends on `pytest` for running the
