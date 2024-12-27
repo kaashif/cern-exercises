@@ -24,11 +24,11 @@ public class DependencyGraphTest {
               - pkg3
             - pkg3
             """;
-    final Map<String, List<String>> givenDependencies = new HashMap<>() {{
-        put("pkg1", List.of("pkg2", "pkg3"));
-        put("pkg2", List.of("pkg3"));
-        put("pkg3", List.of());
-    }};
+    final Map<String, List<String>> givenDependencies = Map.of(
+        "pkg1", List.of("pkg2", "pkg3"),
+        "pkg2", List.of("pkg3"),
+        "pkg3", List.of()
+    );
 
     @Test
     public void resolvesEmptyGraph() {

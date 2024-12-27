@@ -16,6 +16,7 @@ public class DependencyJsonParserTest {
     public void parsesEmptyObject() {
         Assertions.assertEquals(Map.of(), DependencyJsonParser.parse("{}"));
     }
+
     @Test
     public void parsesPackageJson() throws IOException {
         // Given
@@ -25,11 +26,11 @@ public class DependencyJsonParserTest {
         Map<String, List<String>> parsed = DependencyJsonParser.parse(json);
 
         // Then
-        var expected = new HashMap<String, List<String>>() {{
-            put("pkg1", List.of("pkg2", "pkg3"));
-            put("pkg2", List.of("pkg3"));
-            put("pkg3", List.of());
-        }};
+        var expected = Map.of(
+            "pkg1", List.of("pkg2", "pkg3"),
+            "pkg2", List.of("pkg3"),
+            "pkg3", List.of()
+        );
 
         Assertions.assertEquals(expected, parsed);
     }
