@@ -19,6 +19,10 @@ def test_dups_from_given_example() -> None:
     ]
 
 
+def test_dups_of_heterogeneous_list() -> None:
+    assert get_duplicates([1, 1, "str", 2, "str", 3]) == [1, "str"]
+
+
 @given(st.lists(st.integers(max_value=10)))
 def test_gets_duplicates_for_ints(ints: list[int]) -> None:
     dups = get_duplicates(ints)

@@ -1,10 +1,9 @@
-from typing import TypeVar
+from typing import Sequence
 from collections import Counter
+from collections.abc import Hashable
 
-T = TypeVar("T")
 
-
-def get_duplicates(items: list[T]) -> list[T]:
+def get_duplicates(items: Sequence[Hashable]) -> list:
     """
     Returns list of items that appeared more than once,
     in the order they first appeared.
