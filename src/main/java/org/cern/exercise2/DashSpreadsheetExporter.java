@@ -4,7 +4,7 @@ package org.cern.exercise2;
  * Exports a spreadsheet using '-' as the filler string.
  */
 public class DashSpreadsheetExporter {
-    final SpreadsheetImpl sheet;
+    private final SpreadsheetImpl sheet;
 
     public DashSpreadsheetExporter(SpreadsheetImpl sheet) {
         this.sheet = sheet;
