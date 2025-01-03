@@ -5,8 +5,8 @@ import java.util.Collection;
 import java.util.List;
 
 public class Package {
-    String name;
-    List<Package> dependencies;
+    private String name;
+    private List<Package> dependencies;
 
     public Package(String name) {
         this.name = name;
