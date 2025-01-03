@@ -6,8 +6,8 @@ import java.util.*;
  * Parser only capable of parsing the subset of JSON needed for parsing package dependency files.
  */
 public class DependencyJsonParser {
-    final String input;
-    int pos;
+    private final String input;
+    private int pos;
 
     public static Map<String, List<String>> parse(String input) {
         return new DependencyJsonParser(input).parseObject();
