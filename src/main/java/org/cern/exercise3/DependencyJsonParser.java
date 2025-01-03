@@ -19,7 +19,7 @@ public class DependencyJsonParser {
     }
 
     private void skipZeroOrMore(Set<Character> chars) {
-        while (chars.contains(input.charAt(pos))) {
+        while (pos < input.length() && chars.contains(input.charAt(pos))) {
             pos++;
         }
     }
@@ -45,8 +45,8 @@ public class DependencyJsonParser {
         while ((c = input.charAt(pos)) != '"') {
             pos++;
             if (c == '\\') {
-                if (input.charAt(pos) == '\"') {
-                    stringBuilder.append('\"');
+                if (input.charAt(pos) == '"') {
+                    stringBuilder.append('"');
                     pos++;
                 } else {
                     throw new IllegalArgumentException("escape sequence \\" + input.charAt(pos) + " unsupported");

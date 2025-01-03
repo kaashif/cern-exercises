@@ -7,6 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Represents a fully resolved dependency graph.
+ */
 public class DependencyGraph {
     private Map<String, Package> pkgsByName;
 
