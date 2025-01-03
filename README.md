@@ -38,3 +38,5 @@ Ensure you have Java >=21 installed. Run the tests on Linux with:
 ```
 $ ./gradlew test
 ```
+
+Code for Exercise 2 is in `src/main/java/org/cern/exercise2/`, code for Exercise 3 in `src/main/java/org/cern/exercise3/`.
